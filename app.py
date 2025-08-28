@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 import pyodbc
 import os
 
@@ -28,6 +28,7 @@ def dashboard():
        return render_template('dashboard.html', rows=rows)
     except Exception as e:
         return f"<h2>Error:</h2><pre>{str(e)}</pre>"
+
 
 
 
