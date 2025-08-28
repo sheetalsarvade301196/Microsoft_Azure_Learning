@@ -1,0 +1,11 @@
+cd /home/azureuser/scripts
+python3 -m venv venv
+source venv/bin/activate
+pip install pyodbc
+python upload_logs.py
+
+
+export AZURE_SQL_SERVER="server-mysql.database.windows.net"
+export AZURE_SQL_DB="pocdb"
+export AZURE_SQL_USER="sheetal"
+export AZURE_SQL_PASS="Admin123"
