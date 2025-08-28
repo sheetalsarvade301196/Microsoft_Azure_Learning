@@ -3,25 +3,32 @@ import pyodbc
 import os
 
 app = Flask(__name__)
+try:
+    conn = pyodbc.connect(
+        'Driver={ODBC Driver 18 for SQL Server};'
+        'Server={ODBC Driver 18 for SQL Server};Server=tcp:server-mysql.database.windows.net,1433;Database=pocdb;Uid=sheetal;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+        'Database=pocdb;'
+        'UID=sheetal;PWD=Admin123;'
+        'Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+    )
+except Exception as e:
+    conn = None
+    print("DB connection failed:", e)
+    
 
-# Update with your actual SQL DB info
-conn = pyodbc.connect(
-    'Driver={ODBC Driver 18 for SQL Server};Server=tcp:server-mysql.database.windows.net,1433;Database=pocdb;Uid=sheetal;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
-
-    'Server=server-mysql.database.windows.net'
-    'Database=pocdb;UID=sheetal;PWD=Admin123'
-)
 
 @app.route('/')
 def dashboard():
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM ProcessedData")
-    rows = cursor.fetchall()
-    result = "<h2>Processed Data:</h2><ul>"
-    for row in rows:
-        result += f"<li>{row}</li>"
-    result += "</ul>"
-    return result
+    if not conn:
+        return "<h2>DB connection failed</h2>"
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ProcessedData")
+        rows = cursor.fetchall()
+        return str(rows)
+    except Exception as e:
+        return f"<h2>Error:</h2><pre>{str(e)}</pre>"
+
 
 
 
