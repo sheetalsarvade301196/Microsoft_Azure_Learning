@@ -9,7 +9,7 @@ conn = pyodbc.connect(
     'Driver={ODBC Driver 18 for SQL Server};Server=tcp:server-mysql.database.windows.net,1433;Database=pocdb;Uid=sheetal;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 
     'Server=server-mysql.database.windows.net'
-    'Database=pocdb;UID=sheetal;PWD=Adin123'
+    'Database=pocdb;UID=sheetal;PWD=Admin123'
 )
 
 @app.route('/')
@@ -22,6 +22,7 @@ def dashboard():
         result += f"<li>{row}</li>"
     result += "</ul>"
     return result
+
 
 
 
