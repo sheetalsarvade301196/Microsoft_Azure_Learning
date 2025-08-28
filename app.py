@@ -6,7 +6,7 @@ app = Flask(__name__)
 try:
     conn = pyodbc.connect(
         'Driver={ODBC Driver 18 for SQL Server};'
-        'Server={ODBC Driver 18 for SQL Server};Server=tcp:server-mysql.database.windows.net,1433;Database=pocdb;Uid=sheetal;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+        'Server=server-mysql.database.windows.net;'
         'Database=pocdb;'
         'UID=sheetal;PWD=Admin123;'
         'Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
@@ -28,6 +28,7 @@ def dashboard():
         return str(rows)
     except Exception as e:
         return f"<h2>Error:</h2><pre>{str(e)}</pre>"
+
 
 
 
