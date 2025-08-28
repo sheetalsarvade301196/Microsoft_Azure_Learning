@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Processed Data</title>
+</head>
+<body>
+  <h1>Processed Data</h1>
+  {% if rows %}
+    <table border="1">
+      <tr><th>ID</th><th>Name</th><th>Value</th><th>Timestamp</th></tr>
+      {% for row in rows %}
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.value }}</td>
+          <td>{{ row.timestamp }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No data found.</p>
+  {% endif %}
+</body>
+</html>
