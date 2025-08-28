@@ -25,9 +25,10 @@ def dashboard():
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM ProcessedData")
         rows = cursor.fetchall()
-       return render_template('dashboard.html', rows=rows)
+        return render_template('dashboard.html', rows=rows)
     except Exception as e:
         return f"<h2>Error:</h2><pre>{str(e)}</pre>"
+
 
 
 
